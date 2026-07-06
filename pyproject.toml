@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neospark-cli"
+version = "0.1.0"
+description = "NeoSpark image generation CLI - cross-platform Python wrapper"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "NeoSpark CLI Team", email = "team@example.com" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.25.0",
+]
+
+[project.optional-dependencies]
+rich = ["rich>=10.0.0"]
+dev = ["pyinstaller>=5.0", "rich>=10.0.0"]
+
+[project.scripts]
+neospark = "neospark.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/example/neospark-cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
