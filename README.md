@@ -74,7 +74,7 @@ neospark generate "a cute cat sitting on a windowsill" \
   --output ./cat.png
 ```
 
-> The default model is `gpt-image-2` (tengda). To use a Gemini model, explicitly specify `--model gemini-3.1-flash-image-preview`.
+> The default model is `gpt-image-2`. To use a Gemini model, explicitly specify `--model gemini-3.1-flash-image-preview`.
 
 ### Image-to-image
 

@@ -74,7 +74,7 @@ neospark generate "一只可爱的猫咪，坐在窗台上" \
   --output ./cat.png
 ```
 
-> 默认模型为 `gpt-image-2`（tengda）。如需使用 Gemini 模型，显式指定 `--model gemini-3.1-flash-image-preview`。
+> 默认模型为 `gpt-image-2`。如需使用 Gemini 模型，显式指定 `--model gemini-3.1-flash-image-preview`。
 
 ### 图生图
 
