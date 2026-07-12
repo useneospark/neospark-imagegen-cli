@@ -40,6 +40,28 @@ python -m neospark --version
 
 ---
 
+## Registration & API Key
+
+Before using NeoSpark CLI, you need a NeoSpark account and an API key.
+
+1. Go to [NeoSpark](https://useneospark.com/) and sign up / log in.
+2. In the workspace, click your avatar at the bottom-left to open the menu.
+   ![Open user menu](assets/neospark-menu.png)
+3. Select **PRICING** to enter the billing page, then click **API KEYS** in the Quick Actions section.
+   ![API Keys quick action](assets/neospark-pricing-apikeys.png)
+4. On the API Keys page, click **+ CREATE**.
+   ![API Keys list](assets/neospark-apikeys-list.png)
+5. Enter a name for the key (e.g. `neospark-cli`), optionally set an expiration date, then click **CREATE**.
+   ![Create API Key form](assets/neospark-create-key-form.png)
+6. The raw API key is shown only once. Click **COPY** and save it securely.
+   ![Copy API Key](assets/neospark-create-key-result.png)
+
+> The API key starts with `np_`. Keep it safe — if lost, you must create a new one.
+
+After obtaining the key, proceed to the [Authentication](#authentication) section below.
+
+---
+
 ## Authentication
 
 Three methods are supported, with the following priority: command-line argument > environment variable > config file.
