@@ -47,8 +47,8 @@ python -m neospark --version
 1. 访问 [NeoSpark](https://useneospark.com/) 并注册 / 登录。
 2. 在工作台中，点击左下角头像打开菜单。
    ![打开用户菜单](assets/neospark-menu.png)
-3. 选择 **PRICING** 进入计费页面，然后在 Quick Actions 中点击 **API KEYS**。
-   ![API Keys 入口](assets/neospark-pricing-apikeys.png)
+3. 选择 **Profile** 进入个人资料页面，然后在 Quick Actions 中点击 **API KEYS**。
+   ![API Keys 入口](assets/neospark-profile-apikeys.png)
 4. 在 API Keys 页面，点击 **+ CREATE**。
    ![API Keys 列表](assets/neospark-apikeys-list.png)
 5. 输入 Key 名称（例如 `neospark-cli`），可选项设置过期时间，然后点击 **CREATE**。
