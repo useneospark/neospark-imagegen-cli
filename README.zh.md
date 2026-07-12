@@ -40,6 +40,28 @@ python -m neospark --version
 
 ---
 
+## 注册与 API Key
+
+使用 NeoSpark CLI 前，你需要先注册 NeoSpark 账号并获取 API Key。
+
+1. 访问 [NeoSpark](https://useneospark.com/) 并注册 / 登录。
+2. 在工作台中，点击左下角头像打开菜单。
+   ![打开用户菜单](assets/neospark-menu.png)
+3. 选择 **PRICING** 进入计费页面，然后在 Quick Actions 中点击 **API KEYS**。
+   ![API Keys 入口](assets/neospark-pricing-apikeys.png)
+4. 在 API Keys 页面，点击 **+ CREATE**。
+   ![API Keys 列表](assets/neospark-apikeys-list.png)
+5. 输入 Key 名称（例如 `neospark-cli`），可选项设置过期时间，然后点击 **CREATE**。
+   ![创建 API Key](assets/neospark-create-key-form.png)
+6. API Key 只会显示一次，点击 **COPY** 并妥善保存。
+   ![复制 API Key](assets/neospark-create-key-result.png)
+
+> API Key 以 `np_` 开头，请妥善保管。如果遗失，只能重新创建。
+
+获取 Key 后，继续阅读下方的 [认证](#认证) 章节。
+
+---
+
 ## 认证
 
 支持三种方式，优先级：命令行参数 > 环境变量 > 配置文件。
