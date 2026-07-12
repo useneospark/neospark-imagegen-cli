@@ -96,7 +96,7 @@ neospark generate "a cute cat sitting on a windowsill" \
   --output ./cat.png
 ```
 
-> The default model is `gpt-image-2`. To use a Gemini model, specify `--model gemini-3.1-flash-image-preview`. To use Midjourney, specify `--model midjourney` (`1K` resolution only, 25 credits per image). Run `neospark models` for the full list.
+> The default model is `gpt-image-2`. To use a Gemini model, specify `--model gemini-3.1-flash-image-preview`. To use Midjourney, specify `--model midjourney` (`1K` resolution only, 25 credits per image). Run `neospark models` for the full list. All models currently route through the `tengda` provider.
 
 ### Midjourney
 
@@ -108,7 +108,7 @@ neospark generate "a cute cat sitting on a windowsill, warm sunlight --ar 16:9" 
   --output ./cat.png
 ```
 
-> Midjourney uses the `tengda` provider. The `--quality` option does not apply.
+> The `--quality` option does not apply to Midjourney.
 
 ### Image-to-image
 

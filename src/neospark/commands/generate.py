@@ -97,9 +97,8 @@ def handle_generate(args: argparse.Namespace) -> None:
         "strength": args.strength,
     }
 
-    # Auto-detect provider from model: gemini models use gemini, everything else defaults to tengda
-    if args.model.startswith("gemini-"):
-        payload["provider"] = "gemini"
+    # All models currently route through the tengda provider
+    # (provider auto-detection previously used gemini for gemini- prefixed models)
 
     if args.quality:
         payload["quality"] = args.quality

@@ -96,7 +96,7 @@ neospark generate "一只可爱的猫咪，坐在窗台上" \
   --output ./cat.png
 ```
 
-> 默认模型为 `gpt-image-2`。如需使用 Gemini 模型，指定 `--model gemini-3.1-flash-image-preview`。如需使用 Midjourney，指定 `--model midjourney`（仅支持 `1K` 分辨率，25 积分/张）。运行 `neospark models` 查看完整列表。
+> 默认模型为 `gpt-image-2`。如需使用 Gemini 模型，指定 `--model gemini-3.1-flash-image-preview`。如需使用 Midjourney，指定 `--model midjourney`（仅支持 `1K` 分辨率，25 积分/张）。运行 `neospark models` 查看完整列表。当前所有模型均通过 `tengda` 提供商路由。
 
 ### Midjourney
 
@@ -108,7 +108,7 @@ neospark generate "一只可爱的猫咪坐在窗台上，温暖阳光 --ar 16:9
   --output ./cat.png
 ```
 
-> Midjourney 使用 `tengda` 提供商，`--quality` 选项不适用。
+> Midjourney 不适用 `--quality` 选项。
 
 ### 图生图
 

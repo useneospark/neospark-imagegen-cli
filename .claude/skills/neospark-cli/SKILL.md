@@ -98,12 +98,12 @@ python -m neospark billing
 - Default model: `gpt-image-2`
 - Default resolution: `1K`
 - Default aspect ratio: `1:1`
-- Default provider is auto-detected; use `gemini-` prefixed models for Gemini, `midjourney` for Midjourney (Tengda)
+- Default provider: `tengda` (all models currently route through tengda)
 
 ## Important Notes
 
 - Image-to-image and multi-reference generation currently work best with `gpt-image-2`.
-- Midjourney (`--model midjourney`) uses the `tengda` provider, supports only `1K` resolution, and does not support `--quality`.
+- Midjourney (`--model midjourney`) supports only `1K` resolution and does not support `--quality`.
 - The `--zip` batch download option is not reliable due to a server-side issue; download images individually instead.
 - All generated files are saved to the current working directory unless `--output-dir` is specified.
 - The CLI supports `--json` output for scripting and automation.
