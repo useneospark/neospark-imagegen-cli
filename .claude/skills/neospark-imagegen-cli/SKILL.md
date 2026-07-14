@@ -1,5 +1,5 @@
 ---
-name: neospark-cli
+name: neospark-imagegen-cli
 description: Generate and edit images using the NeoSpark CLI from natural language prompts within Claude Code.
 triggers:
   - generate image with neospark

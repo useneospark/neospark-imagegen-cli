@@ -1,4 +1,4 @@
-# neospark-cli Skill
+# neospark-imagegen-cli Skill
 
 A Claude Code skill for generating and editing images with the NeoSpark CLI.
 
@@ -29,12 +29,12 @@ Then symlink the skill directory into your Claude skills folder:
 ```bash
 # Windows (PowerShell, as admin)
 New-Item -ItemType SymbolicLink `
-  -Path "$env:USERPROFILE\.claude\skills\neospark-cli" `
-  -Target "D:\project\skills_creator\neospark-imagegen-cli\.claude\skills\neospark-cli"
+  -Path "$env:USERPROFILE\.claude\skills\neospark-imagegen-cli" `
+  -Target "D:\project\skills_creator\neospark-imagegen-cli\.claude\skills\neospark-imagegen-cli"
 
 # macOS / Linux
-ln -s "D:/project/skills_creator/neospark-imagegen-cli/.claude/skills/neospark-cli" \
-      "$HOME/.claude/skills/neospark-cli"
+ln -s "D:/project/skills_creator/neospark-imagegen-cli/.claude/skills/neospark-imagegen-cli" \
+      "$HOME/.claude/skills/neospark-imagegen-cli"
 ```
 
 ## Usage
