@@ -139,7 +139,7 @@ neospark generate "融合这些图片的风格" \
 | `--aspect` | `1:1` | 宽高比 |
 | `--negative-prompt` | `""` | 负向提示词 |
 | `--num-images` | `1` | 生成数量 1-4 |
-| `--quality` | - | 画质：`low` / `medium` / `high`（仅 gpt-image-2） |
+| `--quality` | `low` | 画质：`low` / `medium` / `high`（仅 gpt-image-2） |
 | `--ref` | - | 本地参考图，可多次使用 |
 | `--ref-url` | - | 参考图 URL，可多次使用 |
 | `--strength` | `0.7` | 参考强度 0.0-1.0 |

@@ -22,7 +22,7 @@ def add_generate_subparser(subparsers: argparse._SubParsersAction, auth_parent: 
     parser.add_argument("-a", "--aspect", default="1:1", help="Aspect ratio")
     parser.add_argument("-n", "--negative-prompt", default="", help="Negative prompt")
     parser.add_argument("--num-images", type=int, default=1, help="Number of images 1-4")
-    parser.add_argument("-q", "--quality", help="Quality: low, medium, high (tengda gpt-image-2 only)")
+    parser.add_argument("-q", "--quality", default="low", help="Quality: low, medium, high (tengda gpt-image-2 only)")
     parser.add_argument("--no-optimize-prompt", action="store_true", help="Disable prompt optimization")
     parser.add_argument("--ref", action="append", default=[], help="Local reference image path (repeatable)")
     parser.add_argument("--ref-url", action="append", default=[], help="Reference image URL (repeatable)")

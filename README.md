@@ -139,7 +139,7 @@ neospark generate "blend the styles of these images" \
 | `--aspect` | `1:1` | Aspect ratio |
 | `--negative-prompt` | `""` | Negative prompt |
 | `--num-images` | `1` | Number of images to generate (1-4) |
-| `--quality` | - | Quality: `low` / `medium` / `high` (gpt-image-2 only) |
+| `--quality` | `low` | Quality: `low` / `medium` / `high` (gpt-image-2 only) |
 | `--ref` | - | Local reference image; can be used multiple times |
 | `--ref-url` | - | Reference image URL; can be used multiple times |
 | `--strength` | `0.7` | Reference strength 0.0-1.0 |
