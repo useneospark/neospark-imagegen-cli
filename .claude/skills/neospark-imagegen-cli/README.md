@@ -1,40 +1,89 @@
 # neospark-imagegen-cli Skill
 
-A Claude Code skill for generating and editing images with the NeoSpark CLI.
-
-## What It Does
-
-This skill turns natural-language image requests into `neospark` CLI commands. You can generate images from text, edit images with new prompts, blend multiple reference images, and manage your generation history.
+A multi-agent skill for generating and editing images with the NeoSpark CLI.
+It supports **Claude Code**, **Codex**, and **OpenClaw**.
 
 ## Installation
 
-This skill is bundled with the `neospark-imagegen-cli` project. When the project is loaded into Claude Code, the skill is automatically available.
+This skill is bundled with the `neospark-imagegen-cli` project:
+
+- Claude Code: `.claude/skills/neospark-imagegen-cli/SKILL.md`
+- Codex: `.codex/skills/neospark-imagegen-cli/README.md`
+- OpenClaw: `skills/neospark-imagegen-cli/SKILL.md`
+
+### One-line install (all agents)
+
+From the project root:
+
+```powershell
+# Windows
+.\scripts\install-skill.ps1
+
+# macOS / Linux
+./scripts/install-skill.sh
+```
+
+The script symlinks (or copies, if symlinks are not permitted) the bundled skill
+directories into each agent's global skills folder.
+
+### Manual install
+
+#### Claude Code
+
+```powershell
+# Windows
+New-Item -ItemType SymbolicLink `
+  -Path "$env:USERPROFILE\.claude\skills\neospark-imagegen-cli" `
+  -Target "$PWD\.claude\skills\neospark-imagegen-cli"
+
+# macOS / Linux
+ln -s "$PWD/.claude/skills/neospark-imagegen-cli" "$HOME/.claude/skills/neospark-imagegen-cli"
+```
+
+#### Codex
+
+```bash
+# macOS / Linux
+ln -s "$PWD/.codex/skills/neospark-imagegen-cli" "$HOME/.codex/skills/neospark-imagegen-cli"
+
+# Windows
+New-Item -ItemType SymbolicLink `
+  -Path "$env:USERPROFILE\.codex\skills\neospark-imagegen-cli" `
+  -Target "$PWD\.codex\skills\neospark-imagegen-cli"
+```
+
+#### OpenClaw
+
+Project-level (automatic when this repo is the OpenClaw workspace):
+
+The `skills/neospark-imagegen-cli/` directory is already at the workspace root.
+
+Global:
+
+```bash
+# macOS / Linux
+ln -s "$PWD/skills/neospark-imagegen-cli" "$HOME/.openclaw/skills/neospark-imagegen-cli"
+
+# Windows
+New-Item -ItemType SymbolicLink `
+  -Path "$env:USERPROFILE\.openclaw\skills\neospark-imagegen-cli" `
+  -Target "$PWD\skills\neospark-imagegen-cli"
+```
+
+### Install the CLI
 
 Run the CLI as a Python module from the project directory:
 
 ```bash
-cd D:\project\skills_creator\neospark-imagegen-cli
+cd neospark-imagegen-cli
 python -m neospark --help
 ```
 
-To install globally, first install the package from source:
+To install globally, run:
 
 ```bash
-cd D:\project\skills_creator\neospark-imagegen-cli
+cd neospark-imagegen-cli
 pip install -e .
-```
-
-Then symlink the skill directory into your Claude skills folder:
-
-```bash
-# Windows (PowerShell, as admin)
-New-Item -ItemType SymbolicLink `
-  -Path "$env:USERPROFILE\.claude\skills\neospark-imagegen-cli" `
-  -Target "D:\project\skills_creator\neospark-imagegen-cli\.claude\skills\neospark-imagegen-cli"
-
-# macOS / Linux
-ln -s "D:/project/skills_creator/neospark-imagegen-cli/.claude/skills/neospark-imagegen-cli" \
-      "$HOME/.claude/skills/neospark-imagegen-cli"
 ```
 
 ## Usage
@@ -46,46 +95,13 @@ Trigger phrases:
 - "edit this image using neospark"
 - "用 neospark 生成一张图片"
 
-Once triggered, Claude will build the appropriate `python -m neospark generate` command, run it, and return the saved image path.
-
-## Examples
-
-### Generate a poster
-
-```bash
-python -m neospark generate "a minimalist sports poster, navy blue and neon green" \
-  --resolution 1K --aspect 16:9 --output ./poster.png
-```
-
-### Edit a photo
-
-```bash
-python -m neospark generate "change the background to a studio gradient" \
-  --ref ./photo.jpg --output ./photo-edited.png
-```
-
-### Blend references
-
-```bash
-python -m neospark generate "combine these styles into a single hero image" \
-  --ref ./a.jpg --ref ./b.jpg --output ./combined.png
-```
-
-## Configuration
-
-Set your NeoSpark API key before generating:
-
-```bash
-python -m neospark auth login --api-key np_xxxxx
-```
-
-Or use the environment variable:
-
-```bash
-export NEOSPARK_API_KEY=np_xxxxx
-```
+Once triggered, the agent will follow the steps in the skill file to build the
+appropriate command, run it, and return the saved image path.
 
 ## Learn More
 
-- NeoSpark CLI source: `D:\project\skills_creator\neospark-imagegen-cli`
-- API documentation: `D:\project\skills_creator\neospark-imagegen-cli\IMAGE_GENERATION_API(1).md`
+- NeoSpark CLI source: bundled in this repository
+- Claude skill file: `.claude/skills/neospark-imagegen-cli/SKILL.md`
+- Codex skill file: `.codex/skills/neospark-imagegen-cli/README.md`
+- OpenClaw skill file: `skills/neospark-imagegen-cli/SKILL.md`
+- Example prompt: `.claude/skills/neospark-imagegen-cli/examples/sports-poster.md`

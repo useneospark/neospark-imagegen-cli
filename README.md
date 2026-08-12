@@ -38,6 +38,28 @@ pip install -e .
 python -m neospark --version
 ```
 
+### Option 4: Install the AI agent skill
+
+This repository bundles reusable skills for **Claude Code**, **Codex**, and **OpenClaw**.
+Install them into each agent's global skills folder with the included script:
+
+```powershell
+# Windows
+.\scripts\install-skill.ps1
+
+# macOS / Linux
+./scripts/install-skill.sh
+```
+
+Manual paths:
+
+- Claude Code: `.claude/skills/neospark-imagegen-cli/` → `~/.claude/skills/neospark-imagegen-cli/`
+- Codex: `.codex/skills/neospark-imagegen-cli/` → `~/.codex/skills/neospark-imagegen-cli/`
+- OpenClaw: `skills/neospark-imagegen-cli/` → `~/.openclaw/skills/neospark-imagegen-cli/`
+
+After installation, ask the agent naturally, for example:  
+"Generate a NeoSpark image of a cat sitting on a windowsill."
+
 ---
 
 ## Registration & API Key

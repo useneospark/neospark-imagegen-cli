@@ -38,6 +38,28 @@ pip install -e .
 python -m neospark --version
 ```
 
+### 方式四：安装 AI 智能体 Skill
+
+本仓库内置了 **Claude Code**、**Codex** 和 **OpenClaw** 可复用的 Skill。
+使用以下脚本可一次性安装到各智能体的全局 Skill 目录：
+
+```powershell
+# Windows
+.\scripts\install-skill.ps1
+
+# macOS / Linux
+./scripts/install-skill.sh
+```
+
+手动安装路径：
+
+- Claude Code：`.claude/skills/neospark-imagegen-cli/` → `~/.claude/skills/neospark-imagegen-cli/`
+- Codex：`.codex/skills/neospark-imagegen-cli/` → `~/.codex/skills/neospark-imagegen-cli/`
+- OpenClaw：`skills/neospark-imagegen-cli/` → `~/.openclaw/skills/neospark-imagegen-cli/`
+
+安装后，用自然语言向智能体发出指令，例如：  
+"用 NeoSpark 生成一张猫咪坐在窗台上的图片。"
+
 ---
 
 ## 注册与 API Key
