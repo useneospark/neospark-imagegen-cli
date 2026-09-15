@@ -65,5 +65,7 @@ batch_output2/
 # Sensitive config
 .neospark/
 
-# Release artifacts
-neospark-cli-skill.zip
+# npx skill package build artifact
+packages/neospark-imagegen-cli-skill/skills/
+*.tgz
+

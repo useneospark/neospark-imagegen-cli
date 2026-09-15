@@ -25,7 +25,7 @@ Run all commands with `neospark`. If the CLI is not on PATH, run `neospark` from
 
 1. Check authentication: run `neospark auth status`. If not authenticated, ask the user for their API key and run `neospark auth login --api-key <key>`.
 2. Build the command: `neospark generate "<prompt>" --output <path>`.
-3. Apply defaults unless the user overrides them: model `gpt-image-2`, resolution `1K`, aspect `1:1`, provider `tengda`.
+3. Apply defaults unless the user overrides them: model `gpt-image-2.5-flare`, resolution `1K`, aspect `1:1`, provider `tengda`.
 4. Run the command and capture the output.
 5. Verify the output file exists. If not, run `neospark status <message_id>`.
 
@@ -47,7 +47,7 @@ Run all commands with `neospark`. If the CLI is not on PATH, run `neospark` from
 
 ## Defaults
 
-- Model: `gpt-image-2`
+- Model: `gpt-image-2.5-flare`
 - Resolution: `1K`
 - Aspect: `1:1`
 - Provider: `tengda` (all models route through tengda)
@@ -55,9 +55,9 @@ Run all commands with `neospark`. If the CLI is not on PATH, run `neospark` from
 ## Constraints
 
 - Midjourney (`--model midjourney`) supports only `1K` resolution and ignores `--quality`.
-- `--quality` is supported only by `tengda gpt-image-2`.
+- `--quality` is supported by `tengda gpt-image-2` and `gpt-image-2.5` models.
 - Do not use `--zip` for batch downloads; download images individually with `neospark download <image_id>`.
-- Image-to-image and multi-reference work best with `gpt-image-2`.
+- Image-to-image and multi-reference work best with `gpt-image-2.5-flare`.
 
 ## Failure modes
 

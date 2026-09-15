@@ -1,3 +1,8 @@
+---
+name: neospark-imagegen-cli
+description: Generate or edit images with the NeoSpark CLI. Use when the user asks for neospark image generation, image-to-image edits, multi-reference blends, or listing generated images.
+---
+
 # neospark-imagegen-cli
 
 Generate, edit, blend, and manage images through the NeoSpark CLI.

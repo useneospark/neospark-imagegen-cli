@@ -38,10 +38,21 @@ pip install -e .
 python -m neospark --version
 ```
 
-### Option 4: Install the AI agent skill
+### Option 5: Install the AI agent skill via `npx`
 
-This repository bundles reusable skills for **Claude Code**, **Codex**, and **OpenClaw**.
-Install them into each agent's global skills folder with the included script:
+If you have Node.js installed, run once to install the skill for Claude Code, Codex, and OpenClaw:
+
+```bash
+npx neospark-imagegen-cli-skill install
+```
+
+Install for a single agent:
+
+```bash
+npx neospark-imagegen-cli-skill install --agent claude
+```
+
+### Manual install
 
 ```powershell
 # Windows
@@ -118,7 +129,7 @@ neospark generate "a cute cat sitting on a windowsill" \
   --output ./cat.png
 ```
 
-> The default model is `gpt-image-2`. To use a Gemini model, specify `--model gemini-3.1-flash-image-preview`. To use Midjourney, specify `--model midjourney` (`1K` resolution only, 25 credits per image). Run `neospark models` for the full list. All models currently route through the `tengda` provider.
+> The default model is `gpt-image-2.5-flare`. To use a Gemini model, specify `--model gemini-3.1-flash-image-preview`. To use Midjourney, specify `--model midjourney` (`1K` resolution only, 25 credits per image). Run `neospark models` for the full list. All models currently route through the `tengda` provider.
 
 ### Midjourney
 
@@ -156,12 +167,12 @@ neospark generate "blend the styles of these images" \
 
 | Option | Default | Description |
 |---|---|---|
-| `--model` | `gpt-image-2` | Model ID: `gpt-image-2`, `gemini-3.1-flash-image-preview`, `midjourney`, ... |
+| `--model` | `gpt-image-2.5-flare` | Model ID: `gpt-image-2.5-flare`, `gpt-image-2`, `gemini-3.1-flash-image-preview`, `midjourney`, ... |
 | `--resolution` | `1K` | `512`, `1K`, `2K`, `3K`, `4K` |
 | `--aspect` | `1:1` | Aspect ratio |
 | `--negative-prompt` | `""` | Negative prompt |
 | `--num-images` | `1` | Number of images to generate (1-4) |
-| `--quality` | `low` | Quality: `low` / `medium` / `high` (gpt-image-2 only) |
+| `--quality` | `low` | Quality: `low` / `medium` / `high` (gpt-image-2 and gpt-image-2.5 models) |
 | `--ref` | - | Local reference image; can be used multiple times |
 | `--ref-url` | - | Reference image URL; can be used multiple times |
 | `--strength` | `0.7` | Reference strength 0.0-1.0 |

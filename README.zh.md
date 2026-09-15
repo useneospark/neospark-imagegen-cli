@@ -38,10 +38,21 @@ pip install -e .
 python -m neospark --version
 ```
 
-### 方式四：安装 AI 智能体 Skill
+### 方式五：通过 `npx` 安装 AI 智能体 Skill
 
-本仓库内置了 **Claude Code**、**Codex** 和 **OpenClaw** 可复用的 Skill。
-使用以下脚本可一次性安装到各智能体的全局 Skill 目录：
+如果已安装 Node.js，运行以下命令即可为 Claude Code、Codex 和 OpenClaw 安装 Skill：
+
+```bash
+npx neospark-imagegen-cli-skill install
+```
+
+仅安装到单个智能体：
+
+```bash
+npx neospark-imagegen-cli-skill install --agent claude
+```
+
+### 手动安装
 
 ```powershell
 # Windows
@@ -118,7 +129,7 @@ neospark generate "一只可爱的猫咪，坐在窗台上" \
   --output ./cat.png
 ```
 
-> 默认模型为 `gpt-image-2`。如需使用 Gemini 模型，指定 `--model gemini-3.1-flash-image-preview`。如需使用 Midjourney，指定 `--model midjourney`（仅支持 `1K` 分辨率，25 积分/张）。运行 `neospark models` 查看完整列表。当前所有模型均通过 `tengda` 提供商路由。
+> 默认模型为 `gpt-image-2.5-flare`。如需使用 Gemini 模型，指定 `--model gemini-3.1-flash-image-preview`。如需使用 Midjourney，指定 `--model midjourney`（仅支持 `1K` 分辨率，25 积分/张）。运行 `neospark models` 查看完整列表。当前所有模型均通过 `tengda` 提供商路由。
 
 ### Midjourney
 
@@ -156,12 +167,12 @@ neospark generate "融合这些图片的风格" \
 
 | 选项 | 默认值 | 说明 |
 |---|---|---|
-| `--model` | `gpt-image-2` | 模型 ID：`gpt-image-2`、`gemini-3.1-flash-image-preview`、`midjourney` 等 |
+| `--model` | `gpt-image-2.5-flare` | 模型 ID：`gpt-image-2.5-flare`、`gpt-image-2`、`gemini-3.1-flash-image-preview`、`midjourney` 等 |
 | `--resolution` | `1K` | `512`, `1K`, `2K`, `3K`, `4K` |
 | `--aspect` | `1:1` | 宽高比 |
 | `--negative-prompt` | `""` | 负向提示词 |
 | `--num-images` | `1` | 生成数量 1-4 |
-| `--quality` | `low` | 画质：`low` / `medium` / `high`（仅 gpt-image-2） |
+| `--quality` | `low` | 画质：`low` / `medium` / `high`（gpt-image-2 和 gpt-image-2.5 系列模型） |
 | `--ref` | - | 本地参考图，可多次使用 |
 | `--ref-url` | - | 参考图 URL，可多次使用 |
 | `--strength` | `0.7` | 参考强度 0.0-1.0 |

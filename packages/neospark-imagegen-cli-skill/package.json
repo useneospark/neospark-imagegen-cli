@@ -1,0 +1,35 @@
+{
+  "name": "neospark-imagegen-cli-skill",
+  "version": "0.1.0",
+  "description": "npx installer for the neospark-imagegen-cli agent skill (Claude Code / Codex / OpenClaw)",
+  "main": "index.js",
+  "bin": {
+    "neospark-imagegen-cli-skill": "index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "skills"
+  ],
+  "scripts": {
+    "prepack": "node scripts/copy-skills.js"
+  },
+  "engines": {
+    "node": ">=16.7.0"
+  },
+  "keywords": [
+    "neospark",
+    "image-generation",
+    "claude-code",
+    "codex",
+    "openclaw",
+    "skill",
+    "npx"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/useneospark/neospark-imagegen-cli.git",
+    "directory": "packages/neospark-imagegen-cli-skill"
+  }
+}
