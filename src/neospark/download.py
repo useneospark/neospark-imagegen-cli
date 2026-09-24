@@ -6,14 +6,14 @@ from pathlib import Path
 from typing import List, Optional
 from urllib.parse import urlparse
 
-from neospark.api import download_image, download_zip
+from neospark.api import BASE_HOST, download_image, download_zip
 
 
 def _infer_extension(url: str) -> str:
     try:
         url_to_parse = url
         if url_to_parse.startswith("/"):
-            url_to_parse = f"https://api.useneospark.com{url_to_parse}"
+            url_to_parse = f"{BASE_HOST}{url_to_parse}"
         parsed = urlparse(url_to_parse)
         pathname = parsed.path
         for ext in (".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp"):

@@ -19,13 +19,15 @@ Run all commands with `neospark`. If the CLI is not on PATH, run `neospark` from
 - **Generate** — text-to-image from a prompt.
 - **Edit** — image-to-image with `--ref`.
 - **Blend** — multi-reference with multiple `--ref` flags.
+- **Batch multi-ref** — one result per reference image via `neospark generate-multi-ref`.
+- **E-commerce storyboard** — product nine-grid storyboard via `neospark ecommerce storyboard`.
 - **Manage** — list sessions/images or check billing.
 
 ## Generate
 
 1. Check authentication: run `neospark auth status`. If not authenticated, ask the user for their API key and run `neospark auth login --api-key <key>`.
 2. Build the command: `neospark generate "<prompt>" --output <path>`.
-3. Apply defaults unless the user overrides them: model `gpt-image-2.5-flare`, resolution `1K`, aspect `1:1`, provider `tengda`.
+3. Apply defaults unless the user overrides them: model `gpt-image-2.5-flare`, resolution `1K`, aspect `1:1`. Provider is auto-detected from the model ID (`gemini`, `tengda`, `wavespeed`) and can be overridden with `--provider`.
 4. Run the command and capture the output.
 5. Verify the output file exists. If not, run `neospark status <message_id>`.
 
@@ -50,7 +52,7 @@ Run all commands with `neospark`. If the CLI is not on PATH, run `neospark` from
 - Model: `gpt-image-2.5-flare`
 - Resolution: `1K`
 - Aspect: `1:1`
-- Provider: `tengda` (all models route through tengda)
+- Provider: auto-detected from model ID (`gemini`, `tengda`, `wavespeed`)
 
 ## Constraints
 

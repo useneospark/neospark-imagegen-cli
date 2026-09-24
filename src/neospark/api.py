@@ -243,6 +243,35 @@ def get_billing_history(
     return _api_request("GET", "/drawing/billing/history", api_key=api_key, token=token, params=params)
 
 
+def submit_multi_ref_generation(
+    session_id: str,
+    payload: Dict[str, Any],
+    api_key: Optional[str] = None,
+    token: Optional[str] = None,
+) -> Dict[str, Any]:
+    return _api_request(
+        "POST",
+        f"/drawing/sessions/{session_id}/generate-multi-ref",
+        api_key=api_key,
+        token=token,
+        json_data=payload,
+    )
+
+
+def generate_storyboard(
+    prompt: str,
+    api_key: Optional[str] = None,
+    token: Optional[str] = None,
+) -> Dict[str, Any]:
+    return _api_request(
+        "POST",
+        "/drawing/ecommerce/storyboard",
+        api_key=api_key,
+        token=token,
+        json_data={"prompt": prompt},
+    )
+
+
 def download_image(
     url: str,
     name: Optional[str] = None,

@@ -8,7 +8,7 @@ It supports **Claude Code**, **Codex**, and **OpenClaw**.
 This skill is bundled with the `neospark-imagegen-cli` project:
 
 - Claude Code: `.claude/skills/neospark-imagegen-cli/SKILL.md`
-- Codex: `.codex/skills/neospark-imagegen-cli/README.md`
+- Codex: `.codex/skills/neospark-imagegen-cli/SKILL.md`
 - OpenClaw: `skills/neospark-imagegen-cli/SKILL.md`
 
 ### One-line install (all agents)
@@ -102,6 +102,6 @@ appropriate command, run it, and return the saved image path.
 
 - NeoSpark CLI source: bundled in this repository
 - Claude skill file: `.claude/skills/neospark-imagegen-cli/SKILL.md`
-- Codex skill file: `.codex/skills/neospark-imagegen-cli/README.md`
+- Codex skill file: `.codex/skills/neospark-imagegen-cli/SKILL.md`
 - OpenClaw skill file: `skills/neospark-imagegen-cli/SKILL.md`
 - Example prompt: `.claude/skills/neospark-imagegen-cli/examples/sports-poster.md`

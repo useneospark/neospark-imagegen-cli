@@ -71,6 +71,28 @@ Manual paths:
 After installation, ask the agent naturally, for example:  
 "Generate a NeoSpark image of a cat sitting on a windowsill."
 
+### Option 4: Install from local source (macOS / Linux)
+
+Requires Python 3.8+ and `pip`.
+
+```bash
+cd neospark-imagegen-cli
+./scripts/install-pip.sh
+```
+
+Or install manually in editable mode:
+
+```bash
+cd neospark-imagegen-cli
+pip install -e .
+```
+
+Verify:
+
+```bash
+neospark --version
+```
+
 ---
 
 ## Registration & API Key
@@ -129,7 +151,7 @@ neospark generate "a cute cat sitting on a windowsill" \
   --output ./cat.png
 ```
 
-> The default model is `gpt-image-2.5-flare`. To use a Gemini model, specify `--model gemini-3.1-flash-image-preview`. To use Midjourney, specify `--model midjourney` (`1K` resolution only, 25 credits per image). Run `neospark models` for the full list. All models currently route through the `tengda` provider.
+> The default model is `gpt-image-2.5-flare`. To use a Gemini model, specify `--model gemini-3.1-flash-image-preview`. To use Midjourney, specify `--model midjourney` (`1K` resolution only, 25 credits per image). To use WaveSpeed Grok, specify `--model grok-imagine-image-v2.0`. Run `neospark models` for the full list. The provider (`gemini`, `tengda`, or `wavespeed`) is auto-detected from the model ID and can be overridden with `--provider`.
 
 ### Midjourney
 
@@ -159,6 +181,24 @@ neospark generate "blend the styles of these images" \
   --output ./merged.png
 ```
 
+### Multi-reference batch generation
+
+Generate one result per reference image using the same prompt.
+
+```bash
+neospark generate-multi-ref "keep the product, change lighting only" \
+  --ref ./product1.jpg --ref ./product2.jpg --ref ./product3.jpg \
+  --output-dir ./results
+```
+
+### E-commerce nine-grid storyboard
+
+Generate a structured storyboard for product detail-page images.
+
+```bash
+neospark ecommerce storyboard "facial cleanser, clean premium beauty style"
+```
+
 ---
 
 ## Command Reference
@@ -167,7 +207,8 @@ neospark generate "blend the styles of these images" \
 
 | Option | Default | Description |
 |---|---|---|
-| `--model` | `gpt-image-2.5-flare` | Model ID: `gpt-image-2.5-flare`, `gpt-image-2`, `gemini-3.1-flash-image-preview`, `midjourney`, ... |
+| `--model` | `gpt-image-2.5-flare` | Model ID: `gpt-image-2.5-flare`, `gpt-image-2`, `gemini-3.1-flash-image-preview`, `midjourney`, `grok-imagine-image-v2.0`, ... |
+| `--provider` | auto | Provider: `gemini`, `tengda`, `wavespeed` (inferred from model if omitted) |
 | `--resolution` | `1K` | `512`, `1K`, `2K`, `3K`, `4K` |
 | `--aspect` | `1:1` | Aspect ratio |
 | `--negative-prompt` | `""` | Negative prompt |
@@ -176,10 +217,31 @@ neospark generate "blend the styles of these images" \
 | `--ref` | - | Local reference image; can be used multiple times |
 | `--ref-url` | - | Reference image URL; can be used multiple times |
 | `--strength` | `0.7` | Reference strength 0.0-1.0 |
+| `--type` | `0` | Generation type: `0`=normal, `1`=ecommerce first stage |
 | `--output` | | Output file path |
 | `--output-dir` | | Output directory |
 | `--zip` | | Download as ZIP |
 | `--no-wait` | | Submit only, do not poll |
+| `--session-id` | | Reuse session |
+
+### `neospark generate-multi-ref <prompt>`
+
+| Option | Default | Description |
+|---|---|---|
+| `--model` | `gpt-image-2.5-flare` | Model ID |
+| `--provider` | auto | Provider override |
+| `--resolution` | `1K` | Resolution |
+| `--aspect` | `1:1` | Aspect ratio |
+| `--negative-prompt` | `""` | Negative prompt |
+| `--quality` | `low` | Quality |
+| `--ref` | - | Local reference images (repeatable) |
+| `--ref-url` | - | Reference image URLs (repeatable) |
+| `--strength` | `0.7` | Reference strength |
+| `--concurrency` | `5` | Parallel jobs (1-20) |
+| `--output` | | Output file path prefix |
+| `--output-dir` | | Output directory |
+| `--zip` | | Download as ZIP |
+| `--no-wait` | | Submit only |
 | `--session-id` | | Reuse session |
 
 ### Other commands
@@ -192,6 +254,7 @@ neospark images delete up_xxx
 neospark sessions list
 neospark sessions show ds_xxx
 neospark billing
+neospark ecommerce storyboard "..."
 neospark download /uploads/.../cat.png --output ./cat.png
 neospark download-zip /uploads/.../a.png /uploads/.../b.png --output ./pack.zip
 ```
@@ -221,7 +284,16 @@ Build outputs:
 
 ## Cross-Platform Builds (CI)
 
-You can use GitHub Actions to run `pyinstaller neospark.spec` on Windows, macOS, and Linux, and automatically publish the artifacts to Releases.
+This project uses GitHub Actions to build:
+
+- Standalone executables for Windows, macOS, and Linux via PyInstaller
+- A platform-independent pip package (`sdist` + `py3-none-any` wheel)
+
+Trigger by pushing a tag like `v0.1.0`, or run the workflow manually from the Actions tab.
+
+### Publish to PyPI
+
+To enable automatic PyPI upload on tag push, add a repository secret named `PYPI_API_TOKEN` in **Settings → Secrets and variables → Actions**.
 
 ---
 

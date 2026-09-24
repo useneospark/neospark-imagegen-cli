@@ -71,6 +71,28 @@ npx neospark-imagegen-cli-skill install --agent claude
 安装后，用自然语言向智能体发出指令，例如：  
 "用 NeoSpark 生成一张猫咪坐在窗台上的图片。"
 
+### 方式四：从本地源码安装（macOS / Linux）
+
+需要 Python 3.8+ 和 `pip`。
+
+```bash
+cd neospark-imagegen-cli
+./scripts/install-pip.sh
+```
+
+或手动以可编辑模式安装：
+
+```bash
+cd neospark-imagegen-cli
+pip install -e .
+```
+
+验证：
+
+```bash
+neospark --version
+```
+
 ---
 
 ## 注册与 API Key
@@ -129,7 +151,7 @@ neospark generate "一只可爱的猫咪，坐在窗台上" \
   --output ./cat.png
 ```
 
-> 默认模型为 `gpt-image-2.5-flare`。如需使用 Gemini 模型，指定 `--model gemini-3.1-flash-image-preview`。如需使用 Midjourney，指定 `--model midjourney`（仅支持 `1K` 分辨率，25 积分/张）。运行 `neospark models` 查看完整列表。当前所有模型均通过 `tengda` 提供商路由。
+> 默认模型为 `gpt-image-2.5-flare`。如需使用 Gemini 模型，指定 `--model gemini-3.1-flash-image-preview`。如需使用 Midjourney，指定 `--model midjourney`（仅支持 `1K` 分辨率，25 积分/张）。如需使用 WaveSpeed Grok，指定 `--model grok-imagine-image-v2.0`。运行 `neospark models` 查看完整列表。提供商（`gemini`、`tengda`、`wavespeed`）会根据模型 ID 自动推断，也可用 `--provider` 覆盖。
 
 ### Midjourney
 
@@ -159,6 +181,24 @@ neospark generate "融合这些图片的风格" \
   --output ./merged.png
 ```
 
+### 多参考图批量生成
+
+使用同一提示词，对每张参考图分别生成一张结果。
+
+```bash
+neospark generate-multi-ref "保留产品主体，只调整布光和背景" \
+  --ref ./product1.jpg --ref ./product2.jpg --ref ./product3.jpg \
+  --output-dir ./results
+```
+
+### 电商九宫格分镜
+
+生成产品详情页九宫格结构化分镜。
+
+```bash
+neospark ecommerce storyboard "洗面奶，干净高级美妆护肤品详情页风格"
+```
+
 ---
 
 ## 命令参考
@@ -167,19 +207,41 @@ neospark generate "融合这些图片的风格" \
 
 | 选项 | 默认值 | 说明 |
 |---|---|---|
-| `--model` | `gpt-image-2.5-flare` | 模型 ID：`gpt-image-2.5-flare`、`gpt-image-2`、`gemini-3.1-flash-image-preview`、`midjourney` 等 |
+| `--model` | `gpt-image-2.5-flare` | 模型 ID：`gpt-image-2.5-flare`、`gpt-image-2`、`gemini-3.1-flash-image-preview`、`midjourney`、`grok-imagine-image-v2.0` 等 |
+| `--provider` | 自动 | 提供商：`gemini`、`tengda`、`wavespeed`（省略时按模型名推断） |
 | `--resolution` | `1K` | `512`, `1K`, `2K`, `3K`, `4K` |
 | `--aspect` | `1:1` | 宽高比 |
 | `--negative-prompt` | `""` | 负向提示词 |
 | `--num-images` | `1` | 生成数量 1-4 |
 | `--quality` | `low` | 画质：`low` / `medium` / `high`（gpt-image-2 和 gpt-image-2.5 系列模型） |
 | `--ref` | - | 本地参考图，可多次使用 |
-| `--ref-url` | - | 参考图 URL，可多次使用 |
+| `--ref-url` | - | 参考图 URL 或本地路径，可多次使用 |
 | `--strength` | `0.7` | 参考强度 0.0-1.0 |
+| `--type` | `0` | 生成类型：`0`=普通生成，`1`=电商详情页九宫格第一阶段 |
 | `--output` | | 输出文件路径 |
 | `--output-dir` | | 输出目录 |
 | `--zip` | | 以 ZIP 下载 |
 | `--no-wait` | | 只提交，不轮询 |
+| `--session-id` | | 复用会话 |
+
+### `neospark generate-multi-ref <prompt>`
+
+| 选项 | 默认值 | 说明 |
+|---|---|---|
+| `--model` | `gpt-image-2.5-flare` | 模型 ID |
+| `--provider` | 自动 | 提供商覆盖 |
+| `--resolution` | `1K` | 分辨率 |
+| `--aspect` | `1:1` | 宽高比 |
+| `--negative-prompt` | `""` | 负向提示词 |
+| `--quality` | `low` | 画质 |
+| `--ref` | - | 本地参考图，可多次使用 |
+| `--ref-url` | - | 参考图 URL，可多次使用 |
+| `--strength` | `0.7` | 参考强度 |
+| `--concurrency` | `5` | 并行生成并发数 1-20 |
+| `--output` | | 输出文件路径前缀 |
+| `--output-dir` | | 输出目录 |
+| `--zip` | | 以 ZIP 下载 |
+| `--no-wait` | | 只提交 |
 | `--session-id` | | 复用会话 |
 
 ### 其他命令
@@ -192,6 +254,7 @@ neospark images delete up_xxx
 neospark sessions list
 neospark sessions show ds_xxx
 neospark billing
+neospark ecommerce storyboard "..."
 neospark download /uploads/.../cat.png --output ./cat.png
 neospark download-zip /uploads/.../a.png /uploads/.../b.png --output ./pack.zip
 ```
@@ -221,7 +284,16 @@ pyinstaller neospark.spec
 
 ## 跨平台构建（CI）
 
-可通过 GitHub Actions 在 Windows / macOS / Linux 上分别执行 `pyinstaller neospark.spec`，自动发布到 Releases。
+本项目使用 GitHub Actions 自动构建：
+
+- Windows / macOS / Linux 独立可执行文件（PyInstaller）
+- 跨平台 pip 安装包（`sdist` + `py3-none-any` wheel）
+
+推送形如 `v0.1.0` 的 tag 即可触发，也可在 Actions 页面手动运行。
+
+### 发布到 PyPI
+
+如需在推送 tag 时自动上传 PyPI，请在仓库 **Settings → Secrets and variables → Actions** 中添加名为 `PYPI_API_TOKEN` 的 secret。
 
 ---
 

@@ -1,15 +1,13 @@
 # neospark-imagegen-cli Skill
 
-Generate, edit, blend, and manage images with the NeoSpark CLI.
+OpenClaw skill for generating and editing images with the NeoSpark CLI.
 
 ## Installation
 
-Place this directory (`neospark-imagegen-cli`) in one of the Codex skill search paths:
+Place this directory (`neospark-imagegen-cli`) in one of the OpenClaw skill search paths:
 
-- macOS / Linux: `~/.codex/skills/neospark-imagegen-cli/`
-- Windows: `%USERPROFILE%\.codex\skills\neospark-imagegen-cli\`
-
-Or keep it project-local at `.codex/skills/neospark-imagegen-cli/` inside a repository.
+- Global: `~/.openclaw/skills/neospark-imagegen-cli/`
+- Workspace: `./skills/neospark-imagegen-cli/` (inside the OpenClaw workspace)
 
 ## Trigger
 

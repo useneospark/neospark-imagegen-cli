@@ -1,56 +1,48 @@
 #!/usr/bin/env bash
-# Install the neospark-imagegen-cli skill into Claude Code, Codex, and/or OpenClaw.
-#
-# Usage:
-#   ./scripts/install-skill.sh
-#   ./scripts/install-skill.sh claude codex
+# Install the neospark-imagegen-cli skill for Claude Code, Codex, and OpenClaw.
+# Symlinks the bundled skill directories into each agent's global skills folder.
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 SKILL_NAME="neospark-imagegen-cli"
-PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-declare -A SOURCE_MAP=(
-    [claude]="$PROJECT_ROOT/.claude/skills/$SKILL_NAME"
-    [codex]="$PROJECT_ROOT/.codex/skills/$SKILL_NAME"
-    [openclaw]="$PROJECT_ROOT/skills/$SKILL_NAME"
-)
+install_skill() {
+    local name="$1"
+    local source_dir="$2"
+    local target_dir="$3"
 
-declare -A TARGET_MAP=(
-    [claude]="$HOME/.claude/skills/$SKILL_NAME"
-    [codex]="$HOME/.codex/skills/$SKILL_NAME"
-    [openclaw]="$HOME/.openclaw/skills/$SKILL_NAME"
-)
+    echo "[$name]"
 
-if [[ $# -gt 0 ]]; then
-    AGENTS=("$@")
-else
-    AGENTS=(claude codex openclaw)
-fi
-
-for agent in "${AGENTS[@]}"; do
-    source="${SOURCE_MAP[$agent]:-}"
-    target="${TARGET_MAP[$agent]:-}"
-
-    if [[ -z "$source" ]] || [[ -z "$target" ]]; then
-        echo "Unknown agent: $agent" >&2
-        continue
+    if [[ ! -d "$source_dir" ]]; then
+        echo "  Source not found: $source_dir. Skipping."
+        return
     fi
 
-    if [[ ! -d "$source" ]]; then
-        echo "Warning: source skill directory not found: $source"
-        continue
+    mkdir -p "$(dirname "$target_dir")"
+
+    if [[ -L "$target_dir" ]]; then
+        rm "$target_dir"
+    elif [[ -e "$target_dir" ]]; then
+        rm -rf "$target_dir"
     fi
 
-    mkdir -p "$(dirname "$target")"
-    rm -rf "$target"
+    ln -s "$source_dir" "$target_dir"
+    echo "  Linked: $target_dir -> $source_dir"
+}
 
-    if ln -s "$source" "$target" 2>/dev/null; then
-        echo "Installed $agent skill: $target -> $source"
-    else
-        cp -R "$source" "$target"
-        echo "Copied $agent skill (symlink failed): $target"
-    fi
-done
+install_skill "Claude Code" \
+    "${PROJECT_ROOT}/.claude/skills/${SKILL_NAME}" \
+    "${HOME}/.claude/skills/${SKILL_NAME}"
 
-echo "Done. Restart the agent CLI if it is already running."
+install_skill "Codex" \
+    "${PROJECT_ROOT}/.codex/skills/${SKILL_NAME}" \
+    "${HOME}/.codex/skills/${SKILL_NAME}"
+
+install_skill "OpenClaw" \
+    "${PROJECT_ROOT}/skills/${SKILL_NAME}" \
+    "${HOME}/.openclaw/skills/${SKILL_NAME}"
+
+echo ""
+echo "Done. Restart your agent or reload skills for changes to take effect."

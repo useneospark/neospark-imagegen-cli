@@ -9,7 +9,9 @@ from neospark import __version__
 from neospark.commands.auth import add_auth_subparser, handle_auth
 from neospark.commands.billing import add_billing_subparser, handle_billing
 from neospark.commands.download import add_download_subparser, handle_download
+from neospark.commands.ecommerce import add_ecommerce_subparser, handle_ecommerce
 from neospark.commands.generate import add_generate_subparser, handle_generate
+from neospark.commands.generate_multi_ref import add_generate_multi_ref_subparser, handle_generate_multi_ref
 from neospark.commands.images import add_images_subparser, handle_images
 from neospark.commands.models import add_models_subparser, handle_models
 from neospark.commands.sessions import add_sessions_subparser, handle_sessions
@@ -45,10 +47,12 @@ def build_parser() -> argparse.ArgumentParser:
     add_auth_subparser(subparsers)
     add_models_subparser(subparsers, auth_parent)
     add_generate_subparser(subparsers, auth_parent)
+    add_generate_multi_ref_subparser(subparsers, auth_parent)
     add_status_subparser(subparsers, auth_parent)
     add_images_subparser(subparsers, auth_parent)
     add_sessions_subparser(subparsers, auth_parent)
     add_billing_subparser(subparsers, auth_parent)
+    add_ecommerce_subparser(subparsers, auth_parent)
     add_download_subparser(subparsers, auth_parent)
 
     return parser
@@ -66,6 +70,8 @@ def main(argv: list = None) -> int:
             handle_models(args)
         elif args.command == "generate":
             handle_generate(args)
+        elif args.command == "generate-multi-ref":
+            handle_generate_multi_ref(args)
         elif args.command == "status":
             handle_status(args)
         elif args.command == "images":
@@ -74,6 +80,8 @@ def main(argv: list = None) -> int:
             handle_sessions(args)
         elif args.command == "billing":
             handle_billing(args)
+        elif args.command == "ecommerce":
+            handle_ecommerce(args)
         elif args.command in ("download", "download-zip"):
             handle_download(args)
         else:
