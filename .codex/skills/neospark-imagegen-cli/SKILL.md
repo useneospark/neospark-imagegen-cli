@@ -52,7 +52,8 @@ Run all commands with `neospark`. If the CLI is not on PATH, run `neospark` from
 ## Constraints
 
 - Midjourney (`--model midjourney`) supports only `1K` resolution and ignores `--quality`.
-- `--quality` is supported by `tengda gpt-image-2` and `gpt-image-2.5` models.
+- `--quality` is supported by `tengda gpt-image-2`, `gpt-image-2.5`, and `gpt-image-2.6` models.
+- `--format` is supported by `gpt-image-2.6` models: `png` (default), `gif`, `webp`.
 - Do not use `--zip` for batch downloads; download images individually with `neospark download <image_id>`.
 - Image-to-image and multi-reference work best with `gpt-image-2.5-flare`.
 

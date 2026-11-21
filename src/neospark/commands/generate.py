@@ -23,7 +23,8 @@ def add_generate_subparser(subparsers: argparse._SubParsersAction, auth_parent: 
     parser.add_argument("-a", "--aspect", default="1:1", help="Aspect ratio")
     parser.add_argument("-n", "--negative-prompt", default="", help="Negative prompt")
     parser.add_argument("--num-images", type=int, default=1, help="Number of images 1-4")
-    parser.add_argument("-q", "--quality", default="low", help="Quality: low, medium, high (tengda gpt-image-2 and gpt-image-2.5 models)")
+    parser.add_argument("-q", "--quality", default="low", help="Quality: low, medium, high (tengda gpt-image-2, gpt-image-2.5, and gpt-image-2.6 models)")
+    parser.add_argument("-f", "--format", default="png", help="Output format: png, gif, webp (model/provider dependent; default png)")
     parser.add_argument("--no-optimize-prompt", action="store_true", help="Disable prompt optimization")
     parser.add_argument("--ref", action="append", default=[], help="Local reference image path (repeatable)")
     parser.add_argument("--ref-url", action="append", default=[], help="Reference image URL or local path (repeatable)")
@@ -110,6 +111,8 @@ def handle_generate(args: argparse.Namespace) -> None:
 
     if args.quality:
         payload["quality"] = args.quality
+    if args.format and args.format != "png":
+        payload["format"] = args.format
     if args.type:
         payload["type"] = args.type
     if ref_upload_ids:

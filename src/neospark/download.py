@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 from neospark.api import BASE_HOST, download_image, download_zip
 
 
-def _infer_extension(url: str) -> str:
+def _infer_extension_from_url(url: str) -> str:
     try:
         url_to_parse = url
         if url_to_parse.startswith("/"):
@@ -21,6 +21,20 @@ def _infer_extension(url: str) -> str:
                 return ext
     except Exception:
         pass
+    return ".png"
+
+
+def _infer_extension_from_data(data: bytes) -> str:
+    if data.startswith(b"GIF89a") or data.startswith(b"GIF87a"):
+        return ".gif"
+    if data.startswith(b"\x89PNG\r\n\x1a\n"):
+        return ".png"
+    if data.startswith(b"\xff\xd8\xff"):
+        return ".jpg"
+    if data.startswith(b"RIFF") and len(data) > 11 and data[8:12] == b"WEBP":
+        return ".webp"
+    if data.startswith(b"BM"):
+        return ".bmp"
     return ".png"
 
 
@@ -52,11 +66,13 @@ def download_images_to_directory(
 
     paths: List[str] = []
     for i, url in enumerate(urls):
-        ext = _infer_extension(url)
+        data = download_image(url, api_key=api_key, token=token)
+        ext = _infer_extension_from_data(data)
         filename = f"{base_name}_{i}{ext}" if len(urls) > 1 else f"{base_name}{ext}"
         output_path = directory / filename
-        saved = download_image_to_file(url, str(output_path), api_key=api_key, token=token)
-        paths.append(saved)
+        with output_path.open("wb") as f:
+            f.write(data)
+        paths.append(str(output_path))
     return paths
 
 

@@ -33,7 +33,8 @@ def add_generate_multi_ref_subparser(
     parser.add_argument("-r", "--resolution", default="1K", help="Resolution: 512, 1K, 2K, 3K, 4K")
     parser.add_argument("-a", "--aspect", default="1:1", help="Aspect ratio")
     parser.add_argument("-n", "--negative-prompt", default="", help="Negative prompt")
-    parser.add_argument("-q", "--quality", default="low", help="Quality: low, medium, high")
+    parser.add_argument("-q", "--quality", default="low", help="Quality: low, medium, high (tengda gpt-image-2, gpt-image-2.5, and gpt-image-2.6 models)")
+    parser.add_argument("-f", "--format", default="png", help="Output format: png, gif, webp (model/provider dependent; default png)")
     parser.add_argument("--ref", action="append", default=[], help="Local reference image path (repeatable)")
     parser.add_argument("--ref-url", action="append", default=[], help="Reference image URL or local path (repeatable)")
     parser.add_argument("-s", "--strength", type=float, default=0.7, help="Reference strength 0.0-1.0")
@@ -113,6 +114,8 @@ def handle_generate_multi_ref(args: argparse.Namespace) -> None:
 
     if args.quality:
         payload["quality"] = args.quality
+    if args.format and args.format != "png":
+        payload["format"] = args.format
     if ref_upload_ids:
         payload["ref_upload_ids"] = ref_upload_ids
     elif ref_image_paths:

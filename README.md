@@ -207,13 +207,14 @@ neospark ecommerce storyboard "facial cleanser, clean premium beauty style"
 
 | Option | Default | Description |
 |---|---|---|
-| `--model` | `gpt-image-2.5-flare` | Model ID: `gpt-image-2.5-flare`, `gpt-image-2`, `gemini-3.1-flash-image-preview`, `midjourney`, `grok-imagine-image-v2.0`, ... |
+| `--model` | `gpt-image-2.5-flare` | Model ID: `gpt-image-2.5-flare`, `gpt-image-2`, `gpt-image-2.6`, `gemini-3.1-flash-image-preview`, `midjourney`, `grok-imagine-image-v2.0`, ... |
 | `--provider` | auto | Provider: `gemini`, `tengda`, `wavespeed` (inferred from model if omitted) |
 | `--resolution` | `1K` | `512`, `1K`, `2K`, `3K`, `4K` |
 | `--aspect` | `1:1` | Aspect ratio |
 | `--negative-prompt` | `""` | Negative prompt |
 | `--num-images` | `1` | Number of images to generate (1-4) |
-| `--quality` | `low` | Quality: `low` / `medium` / `high` (gpt-image-2 and gpt-image-2.5 models) |
+| `--quality` | `low` | Quality: `low` / `medium` / `high` (gpt-image-2, gpt-image-2.5, and gpt-image-2.6 models) |
+| `--format` | `png` | Output format: `png` / `gif` / `webp` (gpt-image-2.6 models, backend-dependent) |
 | `--ref` | - | Local reference image; can be used multiple times |
 | `--ref-url` | - | Reference image URL; can be used multiple times |
 | `--strength` | `0.7` | Reference strength 0.0-1.0 |
@@ -234,6 +235,7 @@ neospark ecommerce storyboard "facial cleanser, clean premium beauty style"
 | `--aspect` | `1:1` | Aspect ratio |
 | `--negative-prompt` | `""` | Negative prompt |
 | `--quality` | `low` | Quality |
+| `--format` | `png` | Output format: `png` / `gif` / `webp` (model-dependent) |
 | `--ref` | - | Local reference images (repeatable) |
 | `--ref-url` | - | Reference image URLs (repeatable) |
 | `--strength` | `0.7` | Reference strength |

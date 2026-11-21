@@ -207,13 +207,14 @@ neospark ecommerce storyboard "洗面奶，干净高级美妆护肤品详情页�
 
 | 选项 | 默认值 | 说明 |
 |---|---|---|
-| `--model` | `gpt-image-2.5-flare` | 模型 ID：`gpt-image-2.5-flare`、`gpt-image-2`、`gemini-3.1-flash-image-preview`、`midjourney`、`grok-imagine-image-v2.0` 等 |
+| `--model` | `gpt-image-2.5-flare` | 模型 ID：`gpt-image-2.5-flare`、`gpt-image-2`、`gpt-image-2.6`、`gemini-3.1-flash-image-preview`、`midjourney`、`grok-imagine-image-v2.0` 等 |
 | `--provider` | 自动 | 提供商：`gemini`、`tengda`、`wavespeed`（省略时按模型名推断） |
 | `--resolution` | `1K` | `512`, `1K`, `2K`, `3K`, `4K` |
 | `--aspect` | `1:1` | 宽高比 |
 | `--negative-prompt` | `""` | 负向提示词 |
 | `--num-images` | `1` | 生成数量 1-4 |
-| `--quality` | `low` | 画质：`low` / `medium` / `high`（gpt-image-2 和 gpt-image-2.5 系列模型） |
+| `--quality` | `low` | 画质：`low` / `medium` / `high`（gpt-image-2、gpt-image-2.5 和 gpt-image-2.6 系列模型） |
+| `--format` | `png` | 输出格式：`png` / `gif` / `webp`（gpt-image-2.6 系列模型，取决于后端支持） |
 | `--ref` | - | 本地参考图，可多次使用 |
 | `--ref-url` | - | 参考图 URL 或本地路径，可多次使用 |
 | `--strength` | `0.7` | 参考强度 0.0-1.0 |
@@ -234,6 +235,7 @@ neospark ecommerce storyboard "洗面奶，干净高级美妆护肤品详情页�
 | `--aspect` | `1:1` | 宽高比 |
 | `--negative-prompt` | `""` | 负向提示词 |
 | `--quality` | `low` | 画质 |
+| `--format` | `png` | 输出格式：`png` / `gif` / `webp`（取决于模型） |
 | `--ref` | - | 本地参考图，可多次使用 |
 | `--ref-url` | - | 参考图 URL，可多次使用 |
 | `--strength` | `0.7` | 参考强度 |
